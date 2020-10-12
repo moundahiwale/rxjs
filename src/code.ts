@@ -11,15 +11,16 @@ const addItem = (val: string) => {
 const observable = Observable.create((observer: PartialObserver<string>) => {
   try {
     observer.next('Hello');
-    observer.complete();
-    observer.next('will not send');
+    setInterval(() => observer.next('How are you?'), 2000);
   } catch (error) {
     observer.error(error);
   }
 });
 
-observable.subscribe(
+const observer = observable.subscribe(
   (success: string) => addItem(success),
   (error: string) => addItem(error),
   () => addItem('Completed')
 );
+
+setTimeout(() => observer.unsubscribe(), 6001);
