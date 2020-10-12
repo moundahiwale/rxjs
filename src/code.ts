@@ -23,4 +23,6 @@ const observer = observable.subscribe(
   () => addItem('Completed')
 );
 
+const observer2 = observable.subscribe((success: string) => addItem(success));
+
 setTimeout(() => observer.unsubscribe(), 6001);
