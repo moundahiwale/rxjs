@@ -25,4 +25,8 @@ const observer = observable.subscribe(
 
 const observer2 = observable.subscribe((success: string) => addItem(success));
 
+// Child subscription/tie 2 observables together
+// Unsubscribe both subscriptions if one has been unsubscribed
+observer.add(observer2);
+
 setTimeout(() => observer.unsubscribe(), 6001);
